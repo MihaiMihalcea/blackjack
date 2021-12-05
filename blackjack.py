@@ -11,8 +11,9 @@ logo = """
       |  \/ K|                            _/ |                
       `------'                           |__/           
 """
-cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
+print(logo)
+cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 player_starting_hand = sample(cards, 2)
 computer_starting_hand = sample(cards, 2)
 computer_displayed_card = random.choice(computer_starting_hand)
@@ -74,7 +75,7 @@ def player_draw_card():
             check_bust()
 
 def computer_draw_card():
-    while sum(computer_current_hand) < 17:
+    while sum(computer_current_hand) < 17 and sum(computer_current_hand) < sum(player_current_hand):
         computer_new_card = random.choice(cards)
         if computer_new_card != 1 and computer_new_card != 11:
             computer_current_hand.append(computer_new_card)
@@ -124,7 +125,7 @@ def play():
         elif player_choice == 'stay':
             computer_draw_card()
             computer_trump_card()
-            while game_on:
+            if game_on:
                 compare_hands()
                 game_on = False
 
